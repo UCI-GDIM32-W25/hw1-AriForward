@@ -5,12 +5,12 @@ public class PlantCountUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text _plantedText;
     [SerializeField] private TMP_Text _remainingText;
-
-    public void UpdateSeeds (int seedsLeft, int seedsPlanted)
+    int seedsPlanted = -1;
+    public void UpdateSeeds (int _numSeeds)
     {
-        seedsLeft -= 1;
         seedsPlanted += 1;
-        _plantedText.SetText(" " + seedsPlanted);
-        _remainingText.SetText(" " + seedsLeft);
+        _remainingText.SetText("" + _numSeeds);
+        _plantedText.SetText("" + seedsPlanted);
+        
     }
 }

@@ -8,17 +8,14 @@ public class Player : MonoBehaviour
     [SerializeField] private int _numSeeds = 5; 
     [SerializeField] private PlantCountUI _plantCountUI;
 
-    private int _numSeedsLeft;
-    private int _numSeedsPlanted;
-
     private void Start ()
     {
-        
+        _plantCountUI.UpdateSeeds(_numSeeds);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q)) {
+        if (Input.GetKeyDown(KeyCode.Space)) {
             PlantSeed();
         }
         if (Input.GetKey(KeyCode.W)) {
@@ -37,8 +34,11 @@ public class Player : MonoBehaviour
 
     public void PlantSeed ()
     {
-        if (_numSeeds > 0) {
-            _plantCountUI.UpdateSeeds(_numSeedsLeft, _numSeedsPlanted);
-        }
+         if (_numSeeds > 0) {
+            _numSeeds -= 1;
+            _plantCountUI.UpdateSeeds(_numSeeds);
+            GameObject player = gameObject;
+            Instantiate(_plantPrefab, player.transform.position, Quaternion.identity);
+        } 
     }
 }
